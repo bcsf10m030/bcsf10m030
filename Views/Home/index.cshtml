@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+<head profile="http://gmpg.org/xfn/11">
+<title>Educational</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="~/Content/layout.css" type="text/css" />
+<script type="text/javascript" src="~/Scripts/jquery-1.4.1.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.slidepanel.setup.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery-ui-1.7.2.custom.min.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.tabs.setup.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.validate.js"></script>
+<script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.js"></script>
+ <script type="text/javascript" > 
+
+     
+     $('document').ready(function () {
+         $('#teachername').focusout(function(){
+           
+             var id = $('#teachername').val();
+
+             $.getJSON("/Teacher/CheckUserName?teachername=" + id, function (data) {
+                 if (!data) {
+                     $('#teachername').text("Login ID does not exist");
+                     $('#teachername').css("color", "black");
+                     $('#teachername').css("border-color", "red");
+                     $('#teachername').css("color", "red");
+                     $('#teachername').css("font-size", "small");
+                       
+                 }
+                 else {
+                     $('#teachername').css("color", "black");
+                     $('#teachername').css("border-color", "green");
+                     $('#teachername').text("");
+                     $('#teachername').css("color", "green");
+                     $('#teachername').css("font-size", "small");
+                 }
+
+             });
+         });
+
+     });
+     $('document').ready(function () {
+         $('#pupilname').focusout(function () {
+
+             var id = $('#pupilname').val();
+
+             $.getJSON("/Student/CheckUserName?pupilname=" + id, function (data) {
+                 if (!data) {
+                     $('#pupilname').text("Login ID does not exist");
+                     $('#pupilname').css("color", "black");
+                     $('#pupilname').css("border-color", "red");
+                     $('#pupilname').css("color", "red");
+                     $('#pupilname').css("font-size", "small");
+
+                 }
+                 else {
+                     $('#pupilname').css("color", "black");
+                     $('#pupilname').css("border-color", "green");
+                     $('#pupilname').text("");
+                     $('#pupilname').css("color", "green");
+                     $('#pupilname').css("font-size", "small");
+                 }
+
+             });
+         });
+     });
+
+
+</script>
+
+</head>
+<body  style ="background-color:#8B785F">
+<div class="wrapper col0">
+  <div id="topbar">
+    <div id="slidepanel">
+      <div class="topbox">
+        <h2>PUCIT Portal</h2>
+        <p>Punjab University College of Information Technology (PUCIT) is a college of computer science and information technology at the University of the Punjab located in Lahore, Pakistan. The college is located on the university's Allama Iqbal Campus (Old Campus) in Bahawalpur house near old Anarkali.</p>
+     
+      </div>
+     <div class="topbox">
+        <h2>Teachers Login Here</h2>
+       
+        <form action="/Teacher/TeacherHome " method="post">
+          <fieldset>
+            <legend>Teachers Login Form</legend>
+            <label for="teachername">Username:
+              <input type="text" name="teachername" id="teachername" value="" />
+            </label>
+            <label for="teacherpass">Password:
+              <input type="password" name="teacherpass" id="teacherpass" value="" />
+            </label>
+              <input type="submit" name="teacherlogin" id="teacherlogin" value="Login" onclick="f1"/>
+              <div id="error"> </div>
+       
+          </fieldset>
+        </form>
+      </div>
+      <div class="topbox last">
+        <h2>Pupils Login Here</h2>
+        <form action="/Student/homePage" method="post">
+          <fieldset>
+            <legend>Pupils Login Form</legend>
+            
+            <label for="pupilname">Username:
+              <input type="text" name="pupilname" id="pupilname" value="" />
+               
+            </label>
+             <div id ="u" style = "width:400px; position:relative"></div>
+            <label for="pupilpass">Password:
+              <input type="password" name="pupilpass" id="paswd" value="" />
+            </label>
+            
+              <p>
+              <input type="submit" name="pupillogin"  value="Login"  id ="btn"/>
+            </p>
+          </fieldset>
+        </form>
+      </div>
+      <br class="clear" />
+    </div>
+    <div id="loginpanel">
+      <ul>
+        <li class="left">Log In Here &raquo;</li>
+        <li class="right" id="toggle"><a id="slideit" href="#slidepanel">Sign In</a><a id="closeit" style="display: none;" href="#slidepanel">Close Panel</a></li>
+      </ul>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col1">
+  <div id="header">
+    <div id="logo">
+      <h1><a href="#">Online Web Portal</a></h1>
+      @ViewBag.checkM
+    </div>
+    <div class="fl_right">
+      <ul>
+        <li class="last"><a href="/Admin/signIn">Admin Panel</li>
+        <li><a href="#">Online Support</a></li>
+        <li><a href="#">School Board</a></li>
+      </ul>
+      <p>Tel: +92 123 4567 | Mail: info@portal.com</p>
+    </div>
+    <br class="clear" />
+  </div>
+</div>
+<!-- ####################################################################################################### -->
+<div class="wrapper col2">
+  <div id="topnav">
+      </div>
+    </div>
+         
+<<div class="wrapper col3">
+  <div id="featured_slide">
+    <div id="featured_wrap">
+      <ul id="featured_tabs">
+        <li><a href="#fc1">Pucit Sports Society<br />
+          <span>Sports society sports festival every year</span></a></li>
+        <li><a href="#fc2">Good attendacne managment<br />
+          <span>See your updated attendance by sitting at home.</span></a></li>
+        <li><a href="#fc3">Quick grades management <br />
+          <span> Grades managed by teachers online.</span></a></li>
+      </ul>
+      <div id="featured_content">
+        <div class="featured_box" id="fc1"><img src="~/images/sports.jpg" alt="" />
+          <div class="floater"><a href="#">Continue Reading &raquo;</a></div>
+        </div>
+        <div class="featured_box" id="fc2"><img src="~/images/pu999.jpeg" alt="" />
+          <div class="floater"><a href="#">Continue Reading &raquo;</a></div>
+        </div>
+        <div class="featured_box" id="fc3"><img src="~/images/images.jpg" alt="" />
+          <div class="floater"><a href="#">Continue Reading &raquo;</a></div>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
